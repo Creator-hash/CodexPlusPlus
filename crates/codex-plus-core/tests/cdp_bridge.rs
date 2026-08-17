@@ -1486,7 +1486,7 @@ process.exit(0);
 }
 
 #[test]
-fn injection_script_moves_export_and_project_move_into_more_menu() {
+fn injection_script_moves_export_into_more_menu_and_omits_project_move() {
     let script = assets::injection_script(57321).replace("\r\n", "\n");
 
     assert!(script.contains("moreButtonClass = \"codex-session-more-button\""));
@@ -1513,6 +1513,8 @@ fn injection_script_moves_export_and_project_move_into_more_menu() {
     assert!(!script.contains("installActionButtonEvents(row, moreButton, openMoreMenu)"));
     assert!(!script.contains("group.appendChild(exportButton)"));
     assert!(!script.contains("group.appendChild(moveButton)"));
+    assert!(!script.contains("projectMoveOverlayClass"));
+    assert!(!script.contains("codex-project-move-"));
 }
 
 #[test]
